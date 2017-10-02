@@ -19,6 +19,8 @@
 		87A2ACFC1F81ED18001FD3A0 /* MatchCandidateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2ACFB1F81ED17001FD3A0 /* MatchCandidateVC.swift */; };
 		87A2ACFE1F81ED90001FD3A0 /* CandidateDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2ACFD1F81ED90001FD3A0 /* CandidateDetailVC.swift */; };
 		87A2AD001F81EDBB001FD3A0 /* MatchedProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2ACFF1F81EDBB001FD3A0 /* MatchedProfilesVC.swift */; };
+		87A2AD051F81F7E9001FD3A0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A2AD041F81F7E9001FD3A0 /* Extension.swift */; };
+		87E7241E1F821F31007C65A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E7241D1F821F31007C65A8 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		87A2ACFB1F81ED17001FD3A0 /* MatchCandidateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCandidateVC.swift; sourceTree = "<group>"; };
 		87A2ACFD1F81ED90001FD3A0 /* CandidateDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateDetailVC.swift; sourceTree = "<group>"; };
 		87A2ACFF1F81EDBB001FD3A0 /* MatchedProfilesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchedProfilesVC.swift; sourceTree = "<group>"; };
+		87A2AD041F81F7E9001FD3A0 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		87E7241D1F821F31007C65A8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DB60C56CB344F64146802E22 /* Pods-KohZhanHwa_iOSFinalExam_TinderClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KohZhanHwa_iOSFinalExam_TinderClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KohZhanHwa_iOSFinalExam_TinderClone/Pods-KohZhanHwa_iOSFinalExam_TinderClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +93,7 @@
 				87A2ACE41F81D27F001FD3A0 /* Info.plist */,
 				87A2ACF11F81DCB4001FD3A0 /* GoogleService-Info.plist */,
 				87A2ACF31F81E34F001FD3A0 /* Assets.xcassets */,
+				87A2AD011F81F7C7001FD3A0 /* Utils */,
 			);
 			path = KohZhanHwa_iOSFinalExam_TinderClone;
 			sourceTree = "<group>";
@@ -117,8 +122,17 @@
 		87A2ACEE1F81D305001FD3A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				87E7241D1F821F31007C65A8 /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		87A2AD011F81F7C7001FD3A0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				87A2AD041F81F7E9001FD3A0 /* Extension.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		919CBEE4791E3DBFB0270A76 /* Pods */ = {
@@ -160,12 +174,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = AlexKoh;
 				TargetAttributes = {
 					87A2ACD41F81D27F001FD3A0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = JYP92526QQ;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -272,8 +287,10 @@
 				87A2ACFE1F81ED90001FD3A0 /* CandidateDetailVC.swift in Sources */,
 				87A2ACEB1F81D2ED001FD3A0 /* LoginVC.swift in Sources */,
 				87A2ACD91F81D27F001FD3A0 /* AppDelegate.swift in Sources */,
+				87E7241E1F821F31007C65A8 /* User.swift in Sources */,
 				87A2ACF01F81D502001FD3A0 /* SignUpEditProfileVC.swift in Sources */,
 				87A2AD001F81EDBB001FD3A0 /* MatchedProfilesVC.swift in Sources */,
+				87A2AD051F81F7E9001FD3A0 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +326,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -317,7 +336,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -360,7 +383,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -368,7 +393,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -401,10 +430,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JYP92526QQ;
 				INFOPLIST_FILE = KohZhanHwa_iOSFinalExam_TinderClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AK.KohZhanHwa-iOSFinalExam-TinderClone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -415,10 +446,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JYP92526QQ;
 				INFOPLIST_FILE = KohZhanHwa_iOSFinalExam_TinderClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AK.KohZhanHwa-iOSFinalExam-TinderClone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
