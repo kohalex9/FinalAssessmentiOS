@@ -15,19 +15,23 @@ class User {
     var age: String?
     var gender: String?
     var email: String?
+    var password: String?
     var description: String?
     var randomId: String?
+    var matchListId: String?
     
     init() {
     }
     
-    init(profileImgUrl: String, name: String, age: String, gender: String, email: String, description: String, randomId: String) {
+    init(profileImgUrl: String, name: String, age: String, gender: String, email: String, password: String?, description: String, randomId: String, matchListId: String) {
         self.profileImgUrl = profileImgUrl
         self.name = name
         self.age = age
         self.gender = gender
         self.email = email
+        self.password = password
         self.description = description
         self.randomId = randomId
+        self.matchListId = matchListId
     }
 }
