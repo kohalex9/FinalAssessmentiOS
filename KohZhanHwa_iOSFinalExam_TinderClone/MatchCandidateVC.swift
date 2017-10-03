@@ -26,19 +26,6 @@ class MatchCandidateVC: UIViewController {
     @IBOutlet weak var profilePictureImageView: UIImageView!
     
     func extractAllMatchedUsersIdFromFirebase() {
-//        Database.database().reference().child("MatchedLists").observe(.childAdded) { (snapshot) in
-//            guard let info = snapshot.value as? [String:Any] else {return}
-//
-//            if let owner = info["owner"] as? String,
-//                let matches = info["matches"] as? [String] {
-//
-//                //find out which matchLists belong to the current user
-//                if owner == self.currentUser.randomId {
-//                    self.matchedUsersUid = matches
-//                }
-//            }
-//        }
-        
         if currentUser.matchListId == "" {
             currentUser.matchListId = currentUser.randomId
         }

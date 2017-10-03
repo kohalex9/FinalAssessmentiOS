@@ -29,17 +29,17 @@ class MatchedProfilesVC: UIViewController {
         print(matchedUsersUid.count)
         print(matchedUsers.count)
         
-        for user in allUsers {
-            if let userId = user.randomId {
-                for matchId in matchedUsersUid {
-                    if matchId == userId {
-                        matchedUsers.append(user)
-                        break
-                    }
-                }
-            }
-        }
-        tableView.reloadData()
+//        for user in allUsers {
+//            if let userId = user.randomId {
+//                for matchId in matchedUsersUid {
+//                    if matchId == userId {
+//                        matchedUsers.append(user)
+//                        break
+//                    }
+//                }
+//            }
+//        }
+//        tableView.reloadData()
         
         if matchedUsers.count == 0 {
             createErrorVC("Your match list is empty!", "Go back profileVC and click choose new candidate to choose new match")
@@ -47,21 +47,23 @@ class MatchedProfilesVC: UIViewController {
         refreshBtn.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        extractAllUsersFromFirebase()
-        extractAllMatchedUsersIdFromFirebase()
-        refreshBtn.isHidden = false
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        matchedUsers.removeAll()
-        matchedUsersUid.removeAll()
-        allUsers.removeAll()
-        tableView.reloadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        extractAllUsersFromFirebase()
+//        extractAllMatchedUsersIdFromFirebase()
+//        refreshBtn.isHidden = false
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        matchedUsers.removeAll()
+//        matchedUsersUid.removeAll()
+//        allUsers.removeAll()
+//        tableView.reloadData()
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        extractAllUsersFromFirebase()
+        extractAllMatchedUsersIdFromFirebase()
     }
     
     func extractAllUsersFromFirebase() {
@@ -77,7 +79,7 @@ class MatchedProfilesVC: UIViewController {
                 let description = infoUser["description"] as? String,
                 let randomId = infoUser["randomId"] as? String,
                 let matchListId = infoUser["matchListId"] as? String {
-
+                
                 let newUser = User()
                 
                 newUser.profileImgUrl = profileImageUrl
@@ -96,17 +98,31 @@ class MatchedProfilesVC: UIViewController {
     }
     
     func extractAllMatchedUsersIdFromFirebase() {
-        Database.database().reference().child("MatchedLists").observe(.childAdded) { (snapshot) in
+        if currentUser.matchListId == "" {
+            currentUser.matchListId = currentUser.randomId
+        }
+        
+        guard let currentUserMatchListId = currentUser.matchListId else {return}
+        
+        Database.database().reference().child("MatchedLists").child(currentUserMatchListId).child("matches").observe(.childAdded) { (snapshot) in
             guard let info = snapshot.value as? [String:Any] else {return}
             
-            if let owner = info["owner"] as? String,
-                let matches = info["matches"] as? [String] {
+            if let matchUserId = info["userId"] as? String {
+                self.matchedUsersUid.append(matchUserId)
                 
-                //find out which matchLists belong to the current user
-                if owner == self.currentUser.randomId {
-                    self.matchedUsersUid = matches
+                for user in self.allUsers {
+                    if let userId = user.randomId {
+                        if userId == matchUserId {
+                            self.matchedUsers.append(user)
+                            print("put matched users")
+                            let index = self.matchedUsers.count - 1
+                            let indexPath = IndexPath(row: index, section: 0)
+                            self.tableView.insertRows(at: [indexPath], with: .right)
+                        }
+                    }
                 }
             }
+            
         }
     }
     
