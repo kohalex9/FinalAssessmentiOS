@@ -418,7 +418,7 @@
                                     <action selector="filterByGender:" destination="29w-7i-p4E" eventType="touchUpInside" id="0x4-db-Cyl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeQ-D8-dMf">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeQ-D8-dMf">
                                 <rect key="frame" x="156" y="431" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Refresh"/>
@@ -457,6 +457,7 @@
                         <outlet property="matchBtn" destination="blT-J9-6H0" id="nd8-YH-N6j"/>
                         <outlet property="nameLabel" destination="pMW-Yb-bVL" id="han-X4-LXj"/>
                         <outlet property="profilePictureImageView" destination="qfx-vE-2vj" id="0LK-8i-mvs"/>
+                        <outlet property="refreshBtn" destination="EeQ-D8-dMf" id="wZA-z4-1EH"/>
                         <outlet property="skipBtn" destination="5mg-sD-GgT" id="xs3-qI-Qbd"/>
                     </connections>
                 </viewController>

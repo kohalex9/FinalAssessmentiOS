@@ -28,6 +28,7 @@ class MatchCandidateVC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePictureImageView: UIImageView!
     @IBOutlet weak var filterModeLabel: UILabel!
+    @IBOutlet weak var refreshBtn: UIButton!
     
     func extractAllMatchedUsersIdFromFirebase() {
         if currentUser.matchListId == "" {
@@ -50,7 +51,6 @@ class MatchCandidateVC: UIViewController {
                     }
                 }
             }
-            
         }
     }
     
@@ -100,18 +100,34 @@ class MatchCandidateVC: UIViewController {
         allUsers = sameAgeUser
         filterModeLabel.text = "Filter Mode: Filter By Age"
         currentIndex = 0
+        
+        refreshBtn.isHidden = false
+        matchBtn.isHidden = true
+        
+        self.viewDidLoad()
     }
     
     @IBAction func filterByGender(_ sender: Any) {
         allUsers = sameGenderUser
         filterModeLabel.text = "Filter Mode: Filter By Gender"
         currentIndex = 0
+        
+        refreshBtn.isHidden = false
+        matchBtn.isHidden = true
+        
+        refreshBtn.isHidden = false
+        
     }
     
     @IBAction func noFilterBtn(_ sender: Any) {
         allUsers = noFilterUser
         filterModeLabel.text = "Filter Mode: No filter"
         currentIndex = 0
+        
+        refreshBtn.isHidden = false
+        matchBtn.isHidden = true
+        
+        self.viewDidLoad()
     }
     
     
@@ -130,6 +146,8 @@ class MatchCandidateVC: UIViewController {
     }
     
     func loadNewUser() {
+        
+        matchBtn.isHidden = false
         
         currentIndex += 1
         

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-            timestampString = "528744845.832103"
+            timestampString = "528746943.449768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "matchBtnTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-            timestampString = "528744845.832822"
+            timestampString = "528746943.450518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "extractAllMatchedUsersIdFromFirebase()"
             landmarkType = "7">
             <Locations>
@@ -58,11 +58,11 @@
                   moduleName = "KohZhanHwa_iOSFinalExam_TinderClone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alexkoh/Desktop/KohZhanHwa_iOSFinalExam_TinderClone/KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-                  timestampString = "528740173.547783"
+                  timestampString = "528746690.297846"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
                   offsetFromSymbolStart = "686">
                </Location>
                <Location
@@ -73,11 +73,11 @@
                   moduleName = "KohZhanHwa_iOSFinalExam_TinderClone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alexkoh/Desktop/KohZhanHwa_iOSFinalExam_TinderClone/KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-                  timestampString = "528740173.553852"
+                  timestampString = "528746690.302151"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
                   offsetFromSymbolStart = "21">
                </Location>
             </Locations>
@@ -90,11 +90,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-            timestampString = "528744845.833352"
+            timestampString = "528746943.451395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "extractAllMatchedUsersIdFromFirebase()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchedProfilesVC.swift"
+            timestampString = "528746943.452132"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "extractAllMatchedUsersIdFromFirebase()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,59 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-            timestampString = "528744845.833831"
+            timestampString = "528746943.452572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "extractAllMatchedUsersIdFromFirebase()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "KohZhanHwa_iOSFinalExam_TinderClone.MatchCandidateVC.extractAllMatchedUsersIdFromFirebase() -&gt; ()"
-                  moduleName = "KohZhanHwa_iOSFinalExam_TinderClone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexkoh/Desktop/KohZhanHwa_iOSFinalExam_TinderClone/KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-                  timestampString = "528740173.587123"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "1391">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in KohZhanHwa_iOSFinalExam_TinderClone.MatchCandidateVC.extractAllMatchedUsersIdFromFirebase() -&gt; ()"
-                  moduleName = "KohZhanHwa_iOSFinalExam_TinderClone"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alexkoh/Desktop/KohZhanHwa_iOSFinalExam_TinderClone/KohZhanHwa_iOSFinalExam_TinderClone/MatchCandidateVC.swift"
-                  timestampString = "528740173.591044"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "2165">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KohZhanHwa_iOSFinalExam_TinderClone/MatchedProfilesVC.swift"
-            timestampString = "528744845.834287"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "extractAllMatchedUsersIdFromFirebase()"
             landmarkType = "7">
          </BreakpointContent>
