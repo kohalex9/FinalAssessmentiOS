@@ -379,7 +379,7 @@
                                 <rect key="frame" x="62" y="153" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-sD-GgT">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-sD-GgT">
                                 <rect key="frame" x="62" y="469" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Skip"/>
@@ -387,7 +387,7 @@
                                     <action selector="skipBtnTapped:" destination="29w-7i-p4E" eventType="touchUpInside" id="vrw-2h-2IV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blT-J9-6H0">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blT-J9-6H0">
                                 <rect key="frame" x="266" y="469" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Match"/>
@@ -395,12 +395,12 @@
                                     <action selector="matchBtnTapped:" destination="29w-7i-p4E" eventType="touchUpInside" id="E2e-TC-Par"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VW-fJ-OH7">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VW-fJ-OH7">
                                 <rect key="frame" x="124" y="469" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter by age"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-aL-Kvc">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-aL-Kvc">
                                 <rect key="frame" x="124" y="507" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter by gender"/>
@@ -425,8 +425,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Your Candidates" image="search_unselected" id="wld-pD-Pe5"/>
                     <connections>
+                        <outlet property="matchBtn" destination="blT-J9-6H0" id="nd8-YH-N6j"/>
                         <outlet property="nameLabel" destination="pMW-Yb-bVL" id="han-X4-LXj"/>
                         <outlet property="profilePictureImageView" destination="qfx-vE-2vj" id="0LK-8i-mvs"/>
+                        <outlet property="skipBtn" destination="5mg-sD-GgT" id="xs3-qI-Qbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XW0-sR-7AP" userLabel="First Responder" sceneMemberID="firstResponder"/>

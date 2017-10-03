@@ -20,21 +20,46 @@ class MatchCandidateVC: UIViewController {
     var allUsers : [User] = []
     var unmatchedUsers: [User] = []
 
+    @IBOutlet weak var skipBtn: UIButton!
+    @IBOutlet weak var matchBtn: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePictureImageView: UIImageView!
     
     func extractAllMatchedUsersIdFromFirebase() {
-        Database.database().reference().child("MatchedLists").observe(.childAdded) { (snapshot) in
+//        Database.database().reference().child("MatchedLists").observe(.childAdded) { (snapshot) in
+//            guard let info = snapshot.value as? [String:Any] else {return}
+//
+//            if let owner = info["owner"] as? String,
+//                let matches = info["matches"] as? [String] {
+//
+//                //find out which matchLists belong to the current user
+//                if owner == self.currentUser.randomId {
+//                    self.matchedUsersUid = matches
+//                }
+//            }
+//        }
+        
+        if currentUser.matchListId == "" {
+            currentUser.matchListId = currentUser.randomId
+        }
+        
+        guard let currentUserMatchListId = currentUser.matchListId else {return}
+        
+        Database.database().reference().child("MatchedLists").child(currentUserMatchListId).child("matches").observe(.childAdded) { (snapshot) in
             guard let info = snapshot.value as? [String:Any] else {return}
-            
-            if let owner = info["owner"] as? String,
-                let matches = info["matches"] as? [String] {
+
+            if let matchUserId = info["userId"] as? String {
+                self.matchedUsersUid.append(matchUserId)
                 
-                //find out which matchLists belong to the current user
-                if owner == self.currentUser.randomId {
-                    self.matchedUsersUid = matches
+                for user in self.allUsers {
+                    if let userId = user.randomId {
+                        if userId == matchUserId {
+                            self.matchedUsers.append(user)
+                        }
+                    }
                 }
             }
+            
         }
     }
     
@@ -70,19 +95,13 @@ class MatchCandidateVC: UIViewController {
     }
     
     @IBAction func matchBtnTapped(_ sender: Any) {
-//        guard let randomId = currentUser.randomId else {return}
-//        if currentUser.matchListId == "" {
-//            //create new child at firebase
-//            let info: [String: Any] = ["matches": [displayUser.randomId]]
-//            Database.database().reference().child("MatchedLists").child(randomId).setValue(info)
-//
-//        } else {
-//            //update the child at firebase
-//            matchedUsersUid.append(randomId)
-//
-//            let info: [String: Any] = ["matches": matchedUsersUid]
-//            Database.database().reference().child("MatchedLists").child(randomId).updateChildValues(info)
-//        }
+        guard let randomId = currentUser.randomId else {return}
+        Database.database().reference().child("MatchedLists").child(randomId).child("matches").childByAutoId().child("userId").setValue(displayUser.randomId)
+        
+        currentUser.matchListId = randomId
+        
+        matchBtn.isHidden = true
+        skipBtn.isHidden = true
     }
     
     @IBAction func skipBtnTapped(_ sender: Any) {
@@ -90,20 +109,21 @@ class MatchCandidateVC: UIViewController {
     }
     
     func loadNewUser() {
+        
+        currentIndex += 1
+        
         if currentIndex == allUsers.count {
             currentIndex = 0
         }
         
         var user = allUsers[currentIndex]
         
-        if user.randomId == currentUser.randomId {
-            user = allUsers[currentIndex + 1]
-            guard let name = user.name,
-                let profileImgUrl = user.profileImgUrl else {return}
-            
-            displayUser = user
-            nameLabel.text = name
-            loadImage(urlString: profileImgUrl)        }
+        for eachMatchUser in matchedUsers {
+            if user.randomId == eachMatchUser.randomId {
+                loadNewUser()
+                return
+            }
+        }
         
         if user.randomId != currentUser.randomId {
             guard let name = user.name,
@@ -112,32 +132,27 @@ class MatchCandidateVC: UIViewController {
             displayUser = user
             nameLabel.text = name
             loadImage(urlString: profileImgUrl)
+        } else {
+            loadNewUser()
+            return
         }
 
         print(displayUser.name)
-        currentIndex += 1
+        print(matchedUsers.count)
+        print(matchedUsersUid.count)
+        print(allUsers.count)
+        //refreshAllArrayData()
+
     }
     
     @IBAction func refreshBtnTapped(_ sender: Any) {
         
-        loadNewUser()
-
-        for user in allUsers {
-            if let userId = user.randomId {
-                for matchId in matchedUsersUid {
-                    if matchId == userId {
-                        matchedUsers.append(user)
-                        break
-                    }
-                }
-            }
-        }
+        matchBtn.isHidden = false
+        skipBtn.isHidden = false
         
-        print(matchedUsers.count)
-        print(matchedUsersUid.count)
-        print(allUsers.count)
-        refreshAllArrayData()
-    }
+        loadNewUser()
+        
+            }
     
     func loadImage(urlString: String) {
         //1.url
@@ -166,40 +181,17 @@ class MatchCandidateVC: UIViewController {
         task.resume()
     }
     
-    func createUnmatchedUsers() {
-        var cloneAllUsers = allUsers
-        
-        //        for (i, user) in cloneAllUsers.enumerated() {
-        //            if cloneAllUsers.count == 0 {
-        //                return
-        //            }
-        //            for matchedUser in matchedUsers {
-        //                if user.randomId == matchedUser.randomId {
-        //                    continue
-        //                } else {
-        //                unmatchedUsers.append(cloneAllUsers.remove(at: i))
-        //                }
-        //            }
-        //        }
-    }
-    
     func refreshAllArrayData() {
         matchedUsers.removeAll()
         matchedUsersUid.removeAll()
         //allUsers.removeAll()
-        extractAllMatchedUsersIdFromFirebase()
-        extractAllMatchedUsersIdFromFirebase()
-
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        extractAllUsersFromFirebase()
-        extractAllMatchedUsersIdFromFirebase()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        extractAllUsersFromFirebase()
+        extractAllMatchedUsersIdFromFirebase()
     }
     
     func createErrorVC(_ title: String, _ message: String) {
