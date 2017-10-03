@@ -107,6 +107,21 @@ class MatchedProfilesVC: UIViewController {
                 }
             }
         }
+        
+        Database.database().reference().child("MatchedLists").child(currentUserMatchListId).child("matches").observe(.childRemoved) { (snapshot) in
+            print("childRemove")
+            guard let info = snapshot.value as? [String:Any] else {return}
+            
+            guard let deletedUserUID = info["userId"] as? String else {return}
+            
+            if let deletedIndex = self.matchedUsers.index(where: { (matchUser) -> Bool in
+                return matchUser.randomId == deletedUserUID
+            }) {
+                self.matchedUsers.remove(at: deletedIndex)
+                self.tableView.reloadData()
+            }
+            
+        }
     }
     
     func createErrorVC(_ title: String, _ message: String) {
