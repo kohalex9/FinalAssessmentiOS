@@ -13,17 +13,21 @@ class MatchCandidateVC: UIViewController {
     
     var currentIndex: Int = 0 //For change different user when tap refresh
     var displayUser : User = User()
-    
     var currentUser: User = User()
     var matchedUsers: [User] = []
     var matchedUsersUid: [String] = []
     var allUsers : [User] = []
     var unmatchedUsers: [User] = []
+    
+    var sameAgeUser: [User] = []
+    var sameGenderUser: [User] = []
+    var noFilterUser: [User] = []
 
     @IBOutlet weak var skipBtn: UIButton!
     @IBOutlet weak var matchBtn: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePictureImageView: UIImageView!
+    @IBOutlet weak var filterModeLabel: UILabel!
     
     func extractAllMatchedUsersIdFromFirebase() {
         if currentUser.matchListId == "" {
@@ -51,6 +55,8 @@ class MatchCandidateVC: UIViewController {
     }
     
     func extractAllUsersFromFirebase() {
+       guard let currentUserAge = currentUser.age,
+        let currenUserGender = currentUser.gender else {return}
         Database.database().reference().child("Users").observe(.childAdded, with: { (snapshot) in
             guard let infoUser = snapshot.value as? [String:Any] else {return}
             
@@ -76,10 +82,38 @@ class MatchCandidateVC: UIViewController {
                 newUser.randomId = randomId
                 newUser.matchListId = matchListId
                 
-                self.allUsers.append(newUser)
+                self.noFilterUser.append(newUser)
+                
+                if currentUserAge == age {
+                    self.sameAgeUser.append(newUser)
+                }
+                
+                if currenUserGender == gender {
+                    self.sameGenderUser.append(newUser)
+                }
+                
             }
         })
     }
+    
+    @IBAction func filterByAge(_ sender: Any) {
+        allUsers = sameAgeUser
+        filterModeLabel.text = "Filter Mode: Filter By Age"
+        currentIndex = 0
+    }
+    
+    @IBAction func filterByGender(_ sender: Any) {
+        allUsers = sameGenderUser
+        filterModeLabel.text = "Filter Mode: Filter By Gender"
+        currentIndex = 0
+    }
+    
+    @IBAction func noFilterBtn(_ sender: Any) {
+        allUsers = noFilterUser
+        filterModeLabel.text = "Filter Mode: No filter"
+        currentIndex = 0
+    }
+    
     
     @IBAction func matchBtnTapped(_ sender: Any) {
         guard let randomId = currentUser.randomId else {return}
@@ -103,7 +137,7 @@ class MatchCandidateVC: UIViewController {
             currentIndex = 0
         }
         
-        var user = allUsers[currentIndex]
+        let user = allUsers[currentIndex]
         
         for eachMatchUser in matchedUsers {
             if user.randomId == eachMatchUser.randomId {

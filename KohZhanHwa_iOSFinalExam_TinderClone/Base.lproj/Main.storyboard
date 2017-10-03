@@ -402,15 +402,21 @@
                                     <action selector="matchBtnTapped:" destination="29w-7i-p4E" eventType="touchUpInside" id="E2e-TC-Par"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VW-fJ-OH7">
-                                <rect key="frame" x="124" y="469" width="126" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VW-fJ-OH7">
+                                <rect key="frame" x="124" y="515" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter by age"/>
+                                <connections>
+                                    <action selector="filterByAge:" destination="29w-7i-p4E" eventType="touchUpInside" id="aFy-Zu-vJg"/>
+                                </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-aL-Kvc">
-                                <rect key="frame" x="124" y="507" width="126" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wr-aL-Kvc">
+                                <rect key="frame" x="124" y="553" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Filter by gender"/>
+                                <connections>
+                                    <action selector="filterByGender:" destination="29w-7i-p4E" eventType="touchUpInside" id="0x4-db-Cyl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeQ-D8-dMf">
                                 <rect key="frame" x="156" y="431" width="62" height="30"/>
@@ -427,11 +433,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSF-zT-uDb">
+                                <rect key="frame" x="124" y="591" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="No filter"/>
+                                <connections>
+                                    <action selector="noFilterBtn:" destination="29w-7i-p4E" eventType="touchUpInside" id="pEW-N3-jva"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TG-fm-YPr">
+                                <rect key="frame" x="62" y="124" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Your Candidates" image="search_unselected" id="wld-pD-Pe5"/>
                     <connections>
+                        <outlet property="filterModeLabel" destination="7TG-fm-YPr" id="UTZ-l1-No7"/>
                         <outlet property="matchBtn" destination="blT-J9-6H0" id="nd8-YH-N6j"/>
                         <outlet property="nameLabel" destination="pMW-Yb-bVL" id="han-X4-LXj"/>
                         <outlet property="profilePictureImageView" destination="qfx-vE-2vj" id="0LK-8i-mvs"/>
