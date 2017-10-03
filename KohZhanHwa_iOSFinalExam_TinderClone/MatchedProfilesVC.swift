@@ -47,19 +47,6 @@ class MatchedProfilesVC: UIViewController {
         refreshBtn.isHidden = true
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        extractAllUsersFromFirebase()
-//        extractAllMatchedUsersIdFromFirebase()
-//        refreshBtn.isHidden = false
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        matchedUsers.removeAll()
-//        matchedUsersUid.removeAll()
-//        allUsers.removeAll()
-//        tableView.reloadData()
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         extractAllUsersFromFirebase()
@@ -103,18 +90,15 @@ class MatchedProfilesVC: UIViewController {
         }
         
         guard let currentUserMatchListId = currentUser.matchListId else {return}
-        
         Database.database().reference().child("MatchedLists").child(currentUserMatchListId).child("matches").observe(.childAdded) { (snapshot) in
             guard let info = snapshot.value as? [String:Any] else {return}
             
             if let matchUserId = info["userId"] as? String {
                 self.matchedUsersUid.append(matchUserId)
-                
                 for user in self.allUsers {
                     if let userId = user.randomId {
                         if userId == matchUserId {
                             self.matchedUsers.append(user)
-                            print("put matched users")
                             let index = self.matchedUsers.count - 1
                             let indexPath = IndexPath(row: index, section: 0)
                             self.tableView.insertRows(at: [indexPath], with: .right)
@@ -122,7 +106,6 @@ class MatchedProfilesVC: UIViewController {
                     }
                 }
             }
-            
         }
     }
     
@@ -155,12 +138,12 @@ extension MatchedProfilesVC: UITableViewDelegate {
         
         guard let candidateVC = storyboard?.instantiateViewController(withIdentifier: "CandidateDetailVC") as? CandidateDetailVC else {return}
         
-        candidateVC.currentUser = selectedUser
+        candidateVC.currentUser = currentUser
+        candidateVC.currentDisplayUser = selectedUser
         candidateVC.matchListsUserId = matchedUsersUid
         candidateVC.currentIndex = indexPath.row
         
         navigationController?.pushViewController(candidateVC, animated: true)
-        
     }
 }
 
