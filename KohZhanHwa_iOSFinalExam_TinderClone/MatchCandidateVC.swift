@@ -96,6 +96,13 @@ class MatchCandidateVC: UIViewController {
         })
     }
     
+    func createErrorVC(_ title: String, _ message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func filterByAge(_ sender: Any) {
         allUsers = sameAgeUser
         filterModeLabel.text = "Filter Mode: Filter By Age"
@@ -115,8 +122,7 @@ class MatchCandidateVC: UIViewController {
         refreshBtn.isHidden = false
         matchBtn.isHidden = true
         
-        refreshBtn.isHidden = false
-        
+        self.viewDidLoad()
     }
     
     @IBAction func noFilterBtn(_ sender: Any) {
@@ -146,6 +152,13 @@ class MatchCandidateVC: UIViewController {
     }
     
     func loadNewUser() {
+        if allUsers.count == 0 {
+            refreshBtn.isHidden = true
+            matchBtn.isHidden = true
+            skipBtn.isHidden = true
+            createErrorVC("No more users matching your filter", "Please choose other filter")
+            return
+        }
         
         matchBtn.isHidden = false
         
@@ -156,6 +169,15 @@ class MatchCandidateVC: UIViewController {
         }
         
         let user = allUsers[currentIndex]
+        
+        //warn the user that no more matches matching the filter can be found
+        if matchedUsers.count == allUsers.count - 1 {
+            refreshBtn.isHidden = true
+            matchBtn.isHidden = true
+            skipBtn.isHidden = true
+            createErrorVC("No more users matching your filter", "Please choose other filter")
+            return
+        }
         
         for eachMatchUser in matchedUsers {
             if user.randomId == eachMatchUser.randomId {
@@ -229,14 +251,12 @@ class MatchCandidateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        matchedUsersUid.removeAll()
+//        matchedUsers.removeAll()
+//        allUsers.removeAll()
+        
         extractAllUsersFromFirebase()
         extractAllMatchedUsersIdFromFirebase()
     }
-    
-    func createErrorVC(_ title: String, _ message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
+
 }

@@ -40,11 +40,6 @@ class MatchedProfilesVC: UIViewController {
 //            }
 //        }
 //        tableView.reloadData()
-        
-        if matchedUsers.count == 0 {
-            createErrorVC("Your match list is empty!", "Go back profileVC and click choose new candidate to choose new match")
-        }
-        refreshBtn.isHidden = true
     }
     
     override func viewDidLoad() {
